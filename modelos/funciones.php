@@ -26,6 +26,13 @@ function obtenerEgresosFuturos()
     return $sentencia->fetchAll();
 }
 
+function obtenerEgresosTipo($tipoID)
+{
+  $sentencia = Conexion::conectar()->prepare("SELECT EgresoID, Monto, Descripcion, Fecha FROM egreso where TipoID = ?");
+  $sentencia->execute([$tipoID]);
+      return $sentencia->fetchAll();
+
+}
 
 function eliminarEgreso($id)
 {

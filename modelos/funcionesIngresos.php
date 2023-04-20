@@ -16,13 +16,20 @@ function obtenerIngresoPorId($IngresoID)
 
 function obtenerIngresos()
 {
-    $sentencia = Conexion::conectar()->query("SELECT IngresoID, Monto, Descripcion, Fecha FROM ingreso");
-    return $sentencia->fetchAll();
+  $sentencia = Conexion::conectar()->query("SELECT IngresoID, Monto, Descripcion, Fecha FROM ingreso");
+  return $sentencia->fetchAll();
 }
 function obtenerIngresosFuturos()
 {
-    $sentencia = Conexion::conectar()->query("SELECT IngresoID, Monto, Descripcion, Fecha FROM ingreso where Fecha > NOW()");
-    return $sentencia->fetchAll();
+  $sentencia = Conexion::conectar()->query("SELECT IngresoID, Monto, Descripcion, Fecha FROM ingreso where Fecha > NOW()");
+  return $sentencia->fetchAll();
+}
+function obtenerIngresosTipo($tipoID)
+{
+  $sentencia = Conexion::conectar()->prepare("SELECT IngresoID, Monto, Descripcion, Fecha FROM ingreso where TipoID = ?");
+  $sentencia->execute([$tipoID]);
+      return $sentencia->fetchAll();
+
 }
 
 function eliminarIngreso($id)

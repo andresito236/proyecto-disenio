@@ -1,0 +1,202 @@
+-- phpMyAdmin SQL Dump
+-- version 5.2.0
+-- https://www.phpmyadmin.net/
+--
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 20-04-2023 a las 22:21:32
+-- Versión del servidor: 10.4.27-MariaDB
+-- Versión de PHP: 8.0.25
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Base de datos: `foraneos`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `egreso`
+--
+
+CREATE TABLE `egreso` (
+  `EgresoID` int(11) NOT NULL,
+  `Monto` decimal(11,2) NOT NULL,
+  `Descripcion` text NOT NULL,
+  `Fecha` date NOT NULL,
+  `TipoID` int(11) NOT NULL,
+  `Confirmacion` bit(1) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `egreso`
+--
+
+INSERT INTO `egreso` (`EgresoID`, `Monto`, `Descripcion`, `Fecha`, `TipoID`, `Confirmacion`) VALUES
+(2, '500.00', 'Salida al cine con mis hermanos', '2023-04-17', 2, b'1'),
+(3, '6000.00', 'Compra de un televisor', '2023-04-18', 3, b'1'),
+(46, '200.00', 'Compra de una refrigeradora', '2023-04-23', 3, b'0'),
+(47, '150.00', 'Compra de almuerzo', '2023-04-22', 1, b'0');
+
+--
+-- Disparadores `egreso`
+--
+DELIMITER $$
+CREATE TRIGGER `ins_confirm_egr` BEFORE INSERT ON `egreso` FOR EACH ROW BEGIN
+		IF NEW.Fecha > CURDATE() THEN
+			SET NEW.confirmacion = 0;
+		END IF;
+	END
+$$
+DELIMITER ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `ingreso`
+--
+
+CREATE TABLE `ingreso` (
+  `IngresoID` int(11) NOT NULL,
+  `Monto` decimal(11,2) NOT NULL,
+  `Descripcion` text NOT NULL,
+  `Fecha` date NOT NULL,
+  `TipoID` int(11) NOT NULL,
+  `Confirmacion` bit(1) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `ingreso`
+--
+
+INSERT INTO `ingreso` (`IngresoID`, `Monto`, `Descripcion`, `Fecha`, `TipoID`, `Confirmacion`) VALUES
+(1, '15500.00', 'Pago de salario quincenal', '2023-04-20', 1, b'0'),
+(3, '15000.00', 'Regalo de cumpleaños', '2023-04-22', 2, b'0'),
+(4, '50000.00', 'Pago de salario mensual', '2023-04-19', 1, NULL),
+(5, '500.00', 'Regalo de navidad', '2023-12-24', 2, b'0');
+
+--
+-- Disparadores `ingreso`
+--
+DELIMITER $$
+CREATE TRIGGER `ins_confirm_ing` BEFORE INSERT ON `ingreso` FOR EACH ROW BEGIN
+		IF NEW.Fecha > CURDATE() THEN
+			SET NEW.confirmacion = 0;
+		END IF;
+	END
+$$
+DELIMITER ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `tipoegreso`
+--
+
+CREATE TABLE `tipoegreso` (
+  `TipoID` int(11) NOT NULL,
+  `Nombre` enum('Comida','Impuestos','Ocio','Mantenimiento de hogar','Otras personas') DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `tipoegreso`
+--
+
+INSERT INTO `tipoegreso` (`TipoID`, `Nombre`) VALUES
+(1, 'Comida'),
+(2, 'Ocio'),
+(3, 'Mantenimiento de hogar');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `tipoingreso`
+--
+
+CREATE TABLE `tipoingreso` (
+  `TipoID` int(11) NOT NULL,
+  `Nombre` enum('Salario','Intereses','Regalos') DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `tipoingreso`
+--
+
+INSERT INTO `tipoingreso` (`TipoID`, `Nombre`) VALUES
+(1, 'Salario'),
+(2, 'Regalos');
+
+--
+-- Índices para tablas volcadas
+--
+
+--
+-- Indices de la tabla `egreso`
+--
+ALTER TABLE `egreso`
+  ADD PRIMARY KEY (`EgresoID`),
+  ADD KEY `fkTipoEgreso` (`TipoID`);
+
+--
+-- Indices de la tabla `ingreso`
+--
+ALTER TABLE `ingreso`
+  ADD PRIMARY KEY (`IngresoID`),
+  ADD KEY `fkTipoIngreso` (`TipoID`);
+
+--
+-- Indices de la tabla `tipoegreso`
+--
+ALTER TABLE `tipoegreso`
+  ADD PRIMARY KEY (`TipoID`);
+
+--
+-- Indices de la tabla `tipoingreso`
+--
+ALTER TABLE `tipoingreso`
+  ADD PRIMARY KEY (`TipoID`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `egreso`
+--
+ALTER TABLE `egreso`
+  MODIFY `EgresoID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+
+--
+-- AUTO_INCREMENT de la tabla `ingreso`
+--
+ALTER TABLE `ingreso`
+  MODIFY `IngresoID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `egreso`
+--
+ALTER TABLE `egreso`
+  ADD CONSTRAINT `fkTipoEgreso` FOREIGN KEY (`TipoID`) REFERENCES `tipoegreso` (`TipoID`);
+
+--
+-- Filtros para la tabla `ingreso`
+--
+ALTER TABLE `ingreso`
+  ADD CONSTRAINT `fkTipoIngreso` FOREIGN KEY (`TipoID`) REFERENCES `tipoingreso` (`TipoID`);
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

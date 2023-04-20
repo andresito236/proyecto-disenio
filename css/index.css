@@ -1,0 +1,93 @@
+:root{
+    --bg-sidebar: #181c29;
+    --bg-main-dashboard: #111219;
+    --text-change: white;
+    --h-cards: 15rem;
+    --h-tables-cards: 31rem;
+    --h-table-container: 100%;
+    --h-tables-cards-2:26rem;
+}
+
+body{
+    height: 100vh;
+}
+nav#sidebar, section.main-dashboard-left{
+    background-color: var(--bg-sidebar);
+    height: 100vh;
+    box-sizing: border-box;
+    overflow: auto;
+}
+
+span.w-icons{
+    font-size: 1.5rem;
+}
+
+section.main-dashboard{
+    background-color: var(--bg-main-dashboard);
+    height: 100vh;
+    box-sizing: border-box;
+    overflow: auto;
+}
+
+.text-change{
+    color:var(--text-change);
+}
+
+.bg-card{
+    background-color: var(--bg-sidebar);
+    color: white;
+    box-sizing: border-box;
+}
+
+.second-row{
+    height: var(--h-cards);
+    overflow: hidden;
+}
+
+article{
+    padding: 0;
+    margin: 0;
+}
+
+li.bg-card, ol{
+    border: none!important;
+}
+
+/* ingresos */
+
+
+tbody tr:hover{
+    background-color: var(--bg-main-dashboard)!important;
+    color: white;
+}
+
+div.h-tables-cards{
+    height: var(--h-tables-cards);
+}
+
+div.h-tables-cards-2{
+    height: var(--h-tables-cards-2);
+}
+
+.table-container-cal{
+    height: var(--h-table-container);
+}
+
+li a {
+    text-decoration: none;
+}
+::-webkit-scrollbar {
+    width: 8px; 
+}
+
+::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #999;
+}

@@ -1,5 +1,6 @@
 const crearFilaTabla = (ingreso, cont) => {
   const fila = document.createElement("tr");
+  fila.classList.add("registro");
 
   const celdaNumero = document.createElement("td");
   celdaNumero.innerText = cont;

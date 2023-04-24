@@ -30,9 +30,9 @@
     integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous">
   </script>
   <script src="js/sweetalert2.min.js" type="text/javascript"></script>
-  <script src="./js/sidebar.js"></script>
   <script src="./js/egresos.js" type="module"></script>
   <script src="./js/IngresarEgreso.js" type="module"></script>
 </body>
+<script src="./js/sidebar.js"></script>
 
 </html>

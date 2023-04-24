@@ -23,6 +23,7 @@ const rellenarFormulario = async (EgresoID) => {
 
 const crearFilaTabla = (egreso, cont) => {
   const fila = document.createElement("tr");
+  fila.classList.add("registro");
 
   const celdaNumero = document.createElement("td");
   celdaNumero.innerText = cont;

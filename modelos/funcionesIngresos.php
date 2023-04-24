@@ -32,6 +32,39 @@ function obtenerIngresosTipo($tipoID)
 
 }
 
+function obtenerIngresosMesActual()
+{
+    $sentencia = Conexion::conectar()->query("SELECT IFNULL(SUM(Monto), 0) as MontoTotal
+        FROM ingreso
+        WHERE MONTH(Fecha) = MONTH(CURRENT_DATE()) 
+        AND (Confirmacion IS NULL OR Confirmacion <> 0);
+    ");
+
+   return $sentencia->fetchAll();
+}
+function obtenerIngresosSemanaActual()
+{
+    $sentencia = Conexion::conectar()->query("SELECT IFNULL(SUM(Monto), 0) as MontoTotal
+      FROM ingreso
+      WHERE Fecha >= DATE_SUB(CURRENT_DATE(), INTERVAL WEEKDAY(CURRENT_DATE()) DAY)
+      AND Fecha < DATE_ADD(DATE_SUB(CURRENT_DATE(), INTERVAL WEEKDAY(CURRENT_DATE()) DAY), INTERVAL 1 WEEK)
+      AND (Confirmacion IS NULL OR Confirmacion <> 0);
+  ");
+
+   return $sentencia->fetchAll();
+}
+function obtenerIngresosDiaActual()
+{
+    $sentencia = Conexion::conectar()->query("SELECT IFNULL(SUM(Monto), 0) as MontoTotal
+      FROM ingreso
+      WHERE Fecha = CURRENT_DATE()
+      AND (Confirmacion IS NULL OR Confirmacion <> 0);
+  ");
+
+   return $sentencia->fetchAll();
+}
+
+
 function eliminarIngreso($id)
 {
     $sentencia = Conexion::conectar()->prepare("DELETE FROM ingreso WHERE IngresoID = ?");

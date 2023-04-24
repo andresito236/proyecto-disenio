@@ -30,9 +30,42 @@ function obtenerEgresosTipo($tipoID)
 {
   $sentencia = Conexion::conectar()->prepare("SELECT EgresoID, Monto, Descripcion, Fecha FROM egreso where TipoID = ?");
   $sentencia->execute([$tipoID]);
-      return $sentencia->fetchAll();
+  return $sentencia->fetchAll();
 
 }
+
+function obtenerEgresosMesActual()
+{
+    $sentencia = Conexion::conectar()->query("SELECT IFNULL(SUM(Monto), 0) as MontoTotal
+        FROM egreso
+        WHERE MONTH(Fecha) = MONTH(CURRENT_DATE()) 
+        AND (Confirmacion IS NULL OR Confirmacion <> 0);
+    ");
+
+   return $sentencia->fetchAll();
+}
+function obtenerEgresosSemanaActual()
+{
+    $sentencia = Conexion::conectar()->query("SELECT IFNULL(SUM(Monto), 0) as MontoTotal
+      FROM egreso
+      WHERE Fecha >= DATE_SUB(CURRENT_DATE(), INTERVAL WEEKDAY(CURRENT_DATE()) DAY)
+      AND Fecha < DATE_ADD(DATE_SUB(CURRENT_DATE(), INTERVAL WEEKDAY(CURRENT_DATE()) DAY), INTERVAL 1 WEEK)
+      AND (Confirmacion IS NULL OR Confirmacion <> 0);
+  ");
+
+   return $sentencia->fetchAll();
+}
+function obtenerEgresosDiaActual()
+{
+    $sentencia = Conexion::conectar()->query("SELECT IFNULL(SUM(Monto), 0) as MontoTotal
+      FROM egreso
+      WHERE Fecha = CURRENT_DATE()
+      AND (Confirmacion IS NULL OR Confirmacion <> 0);
+  ");
+
+   return $sentencia->fetchAll();
+}
+
 
 function eliminarEgreso($id)
 {

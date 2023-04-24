@@ -3,28 +3,28 @@
   <article class="row d-flex">
     <div class="my-3 col-6 col-md-6 col-lg-4 pe-3">
       <div class="card bg-card">
-        <div class="card-header fs-5 fw-bold">Current Balance</div>
-        <div class="card-body">
-          <h5 class="card-title fs-4">L. 150,000</h5>
-          <p class="card-text">6.8%</p>
+        <div class="card-header fs-5 fw-bold"><?php echo isset($totalMes) ? $totalMes : "fuera de linea"; ?></div>
+        <div class="card-body totalMensual">
+          <h5 class="card-title fs-4" id="totalMensual">L. 150,000</h5>
         </div>
       </div>
     </div>
     <div class="mb-3 my-3 col-6 col-md-6 col-lg-4 pe-3">
       <div class="card bg-card">
-        <div class="card-header fs-5 fw-bold">Current Balance</div>
-        <div class="card-body">
-          <h5 class="card-title fs-4">L. 150,000</h5>
-          <p class="card-text">6.8%</p>
+        <div class="card-header fs-5 fw-bold">
+          <?php echo isset($totalSemanal) ? $totalSemanal : "fuera de linea"; ?>
+        </div>
+        <div class="card-body totalSemanal">
+          <h5 class="card-title fs-4" id="totalSemanal">L. 150,000</h5>
         </div>
       </div>
     </div>
     <div class="my-3 col-12 col-md-12 col-lg-4">
       <div class="card bg-card">
-        <div class="card-header fs-5 fw-bold">Current Balance</div>
-        <div class="card-body">
-          <h5 class="card-title fs-4">L. 150,000</h5>
-          <p class="card-text">6.8%</p>
+        <div class="card-header fs-5 fw-bold"><?php echo isset($totalDiario) ? $totalDiario : "fuera de linea"; ?>
+        </div>
+        <div class="card-body totalDiario">
+          <h5 class="card-title fs-4" id="totalDiario">L. 150,000</h5>
         </div>
       </div>
     </div>

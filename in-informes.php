@@ -18,6 +18,9 @@
     <div class="row">
       <?php 
                 $form_type = "ingresos (reportes)";
+                $totalMes = "Ingreso Mensual";
+                $totalSemanal = "Ingreso Semanal";
+                $totalDiario = "Ingresos Diario";
                 $visible = true;
                 include './sidebar.php';
                 include './informes.php';

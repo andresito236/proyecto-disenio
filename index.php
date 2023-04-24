@@ -23,28 +23,25 @@
         <article class="row d-flex">
           <div class="mb-3 my-3 col-6 col-md-6 col-lg-4 pe-3">
             <div class="card bg-card">
-              <div class="card-header fs-5 fw-bold">Current Balance</div>
+              <div class="card-header fs-5 fw-bold">Ingresos Totales</div>
               <div class="card-body">
                 <h5 class="card-title fs-4">L. 150,000</h5>
-                <p class="card-text">6.8%</p>
               </div>
             </div>
           </div>
           <div class="mb-3 my-3 col-6 col-md-6 col-lg-4 pe-3">
             <div class="card bg-card">
-              <div class="card-header fs-5 fw-bold">Current Balance</div>
+              <div class="card-header fs-5 fw-bold">Egresos Totales</div>
               <div class="card-body">
                 <h5 class="card-title fs-4">L. 150,000</h5>
-                <p class="card-text">6.8%</p>
               </div>
             </div>
           </div>
           <div class="mb-3 my-3 col-12 col-md-12 col-lg-4">
             <div class="card bg-card">
-              <div class="card-header fs-5 fw-bold">Current Balance</div>
+              <div class="card-header fs-5 fw-bold">Balance</div>
               <div class="card-body">
                 <h5 class="card-title fs-4">L. 150,000</h5>
-                <p class="card-text">6.8%</p>
               </div>
             </div>
           </div>
@@ -128,10 +125,11 @@
         <article class="row d-flex">
           <div class="mb-3 my-3 col-12">
             <div class="card bg-card">
-              <div class="card-header fs-5 fw-bold"> Balance</div>
+              <div class="card-header fs-5 fw-bold"> Integrantes</div>
               <div class="card-body">
-                <h5 class="card-title fs-4">L. 150,000</h5>
-                <p class="card-text">6.8%</p>
+                <h3 class="card-title fs-4">Andres Enrique Paredes</h3>
+                <h3 class="card-title fs-4">David Daniel Membreño</h3>
+                <h3 class="card-title fs-4">Luis Armando Salgado</h3>
               </div>
             </div>
           </div>

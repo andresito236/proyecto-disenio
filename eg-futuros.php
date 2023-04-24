@@ -20,6 +20,7 @@
     <div class="row">
       <?php 
                 $form_type = "egresos futuros";
+                $formType = "egreso futuro";
                 $visible = true;
                 include './sidebar.php';
                 include './form-actuales.php';

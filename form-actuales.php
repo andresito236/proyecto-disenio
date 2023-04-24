@@ -3,10 +3,11 @@
   <article class="row d-flex">
     <div class="my-4 col-12 col-sm-12 col-md-12 col-lg-6 pe-2">
       <div class="bg-card p-4 rounded h-tables-cards">
-        <h4 class="fs-4 mb-3">Ingrese un nuevo egreso: </h4>
+        <h4 class="fs-4 mb-3">Ingrese un nuevo <?php echo isset($formType) ? $formType : "fuera de linea"; ?></h4>
         <form>
           <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">Tipo de egreso</label>
+            <label for="exampleInputPassword1" class="form-label">Tipo de
+              <?php echo isset($formType) ? $formType : "fuera de linea"; ?></label>
             <select class="form-select" aria-label="Default select example" required>
               <option selected disabled value="">Selecione tipo</option>
             </select>

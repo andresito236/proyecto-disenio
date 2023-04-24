@@ -19,6 +19,7 @@
     <div class="row">
       <?php 
               $form_type = "egresos";
+              $formType = "egreso";
               include './sidebar.php';
               include './form-actuales.php';
             ?>

@@ -19,7 +19,8 @@
   <main class="container-fluid">
     <div class="row">
       <?php 
-                $form_type = "ingresos normales";
+                $form_type = "ingresos";
+                $formType = "ingreso";
                 include './sidebar.php';
                 include './form-actuales.php';
             ?>

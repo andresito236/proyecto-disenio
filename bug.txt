@@ -1,1 +1,0 @@
-Si inserto un registro que haga que haga que la confirmacion sea null y edito el registro a una fecha futura la confirmacion no cambia a 0 

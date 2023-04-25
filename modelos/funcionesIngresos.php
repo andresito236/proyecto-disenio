@@ -98,7 +98,7 @@ function ultimasAccionesIngresos() {
     $db = Conexion::conectar();
     $sentencia = $db->query("SELECT 'Ingreso' AS tipo, IngresoID AS id, Monto, Descripcion FROM ingreso
       ORDER BY id DESC
-      LIMIT 5;
+      LIMIT 3;
     ");
     return $sentencia->fetchAll();
 }

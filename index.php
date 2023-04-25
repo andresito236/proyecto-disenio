@@ -153,69 +153,14 @@
         <div class="bg-card">
           <div class="card-body bg-main-dashboard rounded ">
             <div class="px-4 py-3 mt-2">
-              <h3 class="fs-4">Ingresos pendientes</h3>
+              <h3 class="fs-5">Últimas Acciones de Ingresos</h3>
               <hr>
-              <ol class="list-group list-group-numbered my-4">
-                <li class="list-group-item bg-card d-flex justify-content-between align-items-start">
-                  <div class="ms-2 me-auto">
-                    <div class="fw-bold">Nombre</div>
-                    Fecha
-                  </div>
-                  <span class="badge bg-primary rounded-pill">Monto</span>
-                </li>
-                <li class="list-group-item bg-card d-flex justify-content-between align-items-start">
-                  <div class="ms-2 me-auto">
-                    <div class="fw-bold">Subheading</div>
-                    Content for list item
-                  </div>
-                  <span class="badge bg-primary rounded-pill">14</span>
-                </li>
-                <li class="list-group-item bg-card d-flex justify-content-between align-items-start">
-                  <div class="ms-2 me-auto">
-                    <div class="fw-bold">Subheading</div>
-                    Content for list item
-                  </div>
-                  <span class="badge bg-primary rounded-pill">14</span>
-                </li>
-                <li class="list-group-item bg-card d-flex justify-content-between align-items-start">
-                  <div class="ms-2 me-auto">
-                    <div class="fw-bold">Subheading</div>
-                    Content for list item
-                  </div>
-                  <span class="badge bg-primary rounded-pill">14</span>
-                </li>
+              <ol class="list-group list-group-numbered my-4 ultimasAccionesIngresos">
+
               </ol>
-              <h3 class="fs-4">Ingresos pendientes</h3>
+              <h3 class="fs-5">Últimas Acciones de Egresos</h3>
               <hr>
-              <ol class="list-group list-group-numbered mt-3">
-                <li class="list-group-item bg-card d-flex justify-content-between align-items-start">
-                  <div class="ms-2 me-auto">
-                    <div class="fw-bold">Subheading</div>
-                    Content for list item
-                  </div>
-                  <span class="badge bg-primary rounded-pill">14</span>
-                </li>
-                <li class="list-group-item bg-card d-flex justify-content-between align-items-start">
-                  <div class="ms-2 me-auto">
-                    <div class="fw-bold">Subheading</div>
-                    Content for list item
-                  </div>
-                  <span class="badge bg-primary rounded-pill">14</span>
-                </li>
-                <li class="list-group-item bg-card d-flex justify-content-between align-items-start">
-                  <div class="ms-2 me-auto">
-                    <div class="fw-bold">Subheading</div>
-                    Content for list item
-                  </div>
-                  <span class="badge bg-primary rounded-pill">14</span>
-                </li>
-                <li class="list-group-item bg-card d-flex justify-content-between align-items-start">
-                  <div class="ms-2 me-auto">
-                    <div class="fw-bold">Subheading</div>
-                    Content for list item
-                  </div>
-                  <span class="badge bg-primary rounded-pill">14</span>
-                </li>
+              <ol class="list-group list-group-numbered mt-3 ultimasAccionesEgresos">
               </ol>
             </div>
           </div>

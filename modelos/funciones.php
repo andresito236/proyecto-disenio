@@ -101,7 +101,7 @@ function ultimasAccionesEgresos() {
     $db = Conexion::conectar();
     $sentencia = $db->query("SELECT 'Egreso' AS tipo, EgresoID AS id, Monto, Descripcion FROM egreso
       ORDER BY id DESC
-      LIMIT 5;
+      LIMIT 3;
     ");
     return $sentencia->fetchAll();
 }

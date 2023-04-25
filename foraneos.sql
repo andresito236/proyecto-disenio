@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-04-2023 a las 22:21:32
+-- Tiempo de generación: 26-04-2023 a las 01:48:37
 -- Versión del servidor: 10.4.27-MariaDB
 -- Versión de PHP: 8.0.25
 
@@ -43,12 +43,30 @@ CREATE TABLE `egreso` (
 INSERT INTO `egreso` (`EgresoID`, `Monto`, `Descripcion`, `Fecha`, `TipoID`, `Confirmacion`) VALUES
 (2, '500.00', 'Salida al cine con mis hermanos', '2023-04-17', 2, b'1'),
 (3, '6000.00', 'Compra de un televisor', '2023-04-18', 3, b'1'),
-(46, '200.00', 'Compra de una refrigeradora', '2023-04-23', 3, b'0'),
-(47, '150.00', 'Compra de almuerzo', '2023-04-22', 1, b'0');
+(46, '200.00', 'Compra de una refrigeradora', '2023-04-23', 3, b'1'),
+(47, '150.00', 'Compra de almuerzo', '2023-04-23', 1, b'1'),
+(71, '500.00', 'Salida a jugar futbol', '2023-04-25', 2, b'0'),
+(72, '1000.00', 'Salida a comer con mi familia', '2023-04-25', 1, b'0');
 
 --
 -- Disparadores `egreso`
 --
+DELIMITER $$
+CREATE TRIGGER `actualizar_tabla` BEFORE UPDATE ON `egreso` FOR EACH ROW BEGIN
+    IF NEW.Fecha > NOW() THEN
+        SET NEW.Confirmacion = 0;
+    END IF;
+END
+$$
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `actualizar_tabla_confirmacion` BEFORE UPDATE ON `egreso` FOR EACH ROW BEGIN
+    IF NEW.fecha <= NOW() THEN
+        SET NEW.Confirmacion = 1;
+    END IF;
+END
+$$
+DELIMITER ;
 DELIMITER $$
 CREATE TRIGGER `ins_confirm_egr` BEFORE INSERT ON `egreso` FOR EACH ROW BEGIN
 		IF NEW.Fecha > CURDATE() THEN
@@ -78,14 +96,31 @@ CREATE TABLE `ingreso` (
 --
 
 INSERT INTO `ingreso` (`IngresoID`, `Monto`, `Descripcion`, `Fecha`, `TipoID`, `Confirmacion`) VALUES
-(1, '15500.00', 'Pago de salario quincenal', '2023-04-20', 1, b'0'),
-(3, '15000.00', 'Regalo de cumpleaños', '2023-04-22', 2, b'0'),
+(1, '15500.00', 'Pago de salario quincenal', '2023-04-20', 1, b'1'),
 (4, '50000.00', 'Pago de salario mensual', '2023-04-19', 1, NULL),
-(5, '500.00', 'Regalo de navidad', '2023-12-24', 2, b'0');
+(8, '500.00', 'Regalo de navidad', '2023-04-24', 2, NULL),
+(14, '10000.00', 'Pago de salario mensual', '2023-04-25', 1, b'0'),
+(15, '15000.00', 'Bonificación del trabajo', '2023-04-25', 2, b'0');
 
 --
 -- Disparadores `ingreso`
 --
+DELIMITER $$
+CREATE TRIGGER `actualizar_ingreso_tabla` BEFORE UPDATE ON `ingreso` FOR EACH ROW BEGIN
+    IF NEW.fecha > NOW() THEN
+        SET NEW.Confirmacion = 0;
+    END IF;
+END
+$$
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `actualizar_ingresos_tabla_confirmacion` BEFORE UPDATE ON `ingreso` FOR EACH ROW BEGIN
+    IF NEW.fecha <= NOW() THEN
+        SET NEW.Confirmacion = 1;
+    END IF;
+END
+$$
+DELIMITER ;
 DELIMITER $$
 CREATE TRIGGER `ins_confirm_ing` BEFORE INSERT ON `ingreso` FOR EACH ROW BEGIN
 		IF NEW.Fecha > CURDATE() THEN
@@ -172,13 +207,13 @@ ALTER TABLE `tipoingreso`
 -- AUTO_INCREMENT de la tabla `egreso`
 --
 ALTER TABLE `egreso`
-  MODIFY `EgresoID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `EgresoID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
 
 --
 -- AUTO_INCREMENT de la tabla `ingreso`
 --
 ALTER TABLE `ingreso`
-  MODIFY `IngresoID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `IngresoID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- Restricciones para tablas volcadas

@@ -45,7 +45,7 @@
                         }
                     ?>
 
-          <div class=' mb-3'>
+          <div class='mb-3'>
             <label for='fecha' class='form-label'>Fecha</label>
             <input type='date' class='form-control' id='fecha' aria-describedby='fecha' required>
           </div>
@@ -60,7 +60,7 @@
     <div class="my-4 col-12 col-sm-12 col-md-12 col-lg-6">
       <div class="bg-card rounded p-4 h-tables-cards">
         <div class="table-container-cal overflow-y-auto">
-          <table class="table table-responsive text-white bg-card">
+          <table class="table table-responsive text-change  bg-card">
             <thead>
               <tr>
                 <th scope="col">#</th>
@@ -81,12 +81,12 @@
       <div class="bg-card rounded py-2 px-5">
         <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4">
           <div class="col-md-4 d-flex align-items-center">
-            <span class="mb-3 mb-md-0 text-white fs-5">© 2023 Foraneos, Inc</span>
+            <span class="mb-3 mb-md-0 text-change fs-5">© 2023 Foraneos, Inc</span>
           </div>
           <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
-            <li class="ms-3"><a class="text-white fs-5" href="#"><i class="fi fi-brands-whatsapp"></i></a></li>
-            <li class="ms-3"><a class="text-white fs-5" href="#"><i class="fi fi-brands-linkedin"></i></a></li>
-            <li class="ms-3"><a class="text-white fs-5" href="#"><i class="fi fi-brands-twitter"></i></a></li>
+            <li class="ms-3"><a class="text-change fs-5" href="#"><i class="fi fi-brands-whatsapp"></i></a></li>
+            <li class="ms-3"><a class="text-change fs-5" href="#"><i class="fi fi-brands-linkedin"></i></a></li>
+            <li class="ms-3"><a class="text-change fs-5" href="#"><i class="fi fi-brands-twitter"></i></a></li>
           </ul>
         </footer>
       </div>

@@ -31,7 +31,14 @@ function obtenerIngresosTipo($tipoID)
       return $sentencia->fetchAll();
 
 }
-
+function obtenerIngresosTotales()
+{
+    $sentencia = Conexion::conectar()->query("SELECT IFNULL(SUM(Monto), 0) as MontoTotal
+        FROM ingreso
+        WHERE (Confirmacion IS NULL OR Confirmacion <> 0);
+    ");
+   return $sentencia->fetchAll();
+}
 function obtenerIngresosMesActual()
 {
     $sentencia = Conexion::conectar()->query("SELECT IFNULL(SUM(Monto), 0) as MontoTotal
@@ -80,4 +87,13 @@ function insertarIngreso($monto, $descripcion, $fecha, $tipoID)
 function tipoIngreso(){
   $sentencia = Conexion::conectar()->query("SELECT  TipoID, Nombre FROM tipoingreso");
   return $sentencia->fetchAll();
+}
+
+function ultimasAccionesIngresos() {
+    $db = Conexion::conectar();
+    $sentencia = $db->query("SELECT 'Ingreso' AS tipo, IngresoID AS id, Monto, Descripcion FROM ingreso
+      ORDER BY id DESC
+      LIMIT 5;
+    ");
+    return $sentencia->fetchAll();
 }

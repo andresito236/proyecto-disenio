@@ -5,7 +5,7 @@
       <div class="card bg-card">
         <div class="card-header fs-5 fw-bold"><?php echo isset($totalMes) ? $totalMes : "fuera de linea"; ?></div>
         <div class="card-body totalMensual">
-          <h5 class="card-title fs-4" id="totalMensual">L. 150,000</h5>
+          <h5 class="card-title fs-4" id="totalMensual">L. 0,00</h5>
         </div>
       </div>
     </div>
@@ -15,7 +15,7 @@
           <?php echo isset($totalSemanal) ? $totalSemanal : "fuera de linea"; ?>
         </div>
         <div class="card-body totalSemanal">
-          <h5 class="card-title fs-4" id="totalSemanal">L. 150,000</h5>
+          <h5 class="card-title fs-4" id="totalSemanal">L. 0,00</h5>
         </div>
       </div>
     </div>
@@ -24,7 +24,7 @@
         <div class="card-header fs-5 fw-bold"><?php echo isset($totalDiario) ? $totalDiario : "fuera de linea"; ?>
         </div>
         <div class="card-body totalDiario">
-          <h5 class="card-title fs-4" id="totalDiario">L. 150,000</h5>
+          <h5 class="card-title fs-4" id="totalDiario">L. 0,00</h5>
         </div>
       </div>
     </div>

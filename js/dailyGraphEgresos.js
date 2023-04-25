@@ -1,8 +1,8 @@
 // Obtener el elemento canvas del DOM
-const grafico = document.getElementById("dailyGraph").getContext("2d");
+const grafico2 = document.getElementById("dailyGraphEgresos").getContext("2d");
 
 // Crear el objeto Chart y definir las opciones
-const miChart = new Chart(grafico, {
+const miChart2 = new Chart(grafico, {
   type: "doughnut",
   data: {
     labels: [

@@ -11,6 +11,7 @@
 body {
   height: 100vh;
 }
+
 nav#sidebar,
 section.main-dashboard-left {
   background-color: var(--bg-sidebar);
@@ -36,7 +37,7 @@ section.main-dashboard {
 
 .bg-card {
   background-color: var(--bg-sidebar);
-  color: white;
+  color: var(--text-change);
   box-sizing: border-box;
 }
 
@@ -59,7 +60,7 @@ ol {
 
 tbody tr:hover {
   background-color: var(--bg-main-dashboard) !important;
-  color: white;
+  color: var(--text-change);
 }
 
 div.h-tables-cards {

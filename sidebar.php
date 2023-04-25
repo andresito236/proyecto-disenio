@@ -25,7 +25,7 @@
           <li>
             <a href="./in-actuales.php" class="nav-link text-change">
               <i class="fi fi-rr-angle-small-right"></i>
-              Ingresos actuales
+              Ingresos
             </a>
           </li>
           <li>
@@ -54,7 +54,7 @@
           <li>
             <a href="./eg-actuales.php" class="nav-link text-change">
               <i class="fi fi-rr-angle-small-right"></i>
-              Egresos actuales
+              Egresos
             </a>
           </li>
           <li>
@@ -73,4 +73,7 @@
       </div>
     </li>
   </ul>
+  <div class="dropdown">
+    <button id="theme" class="bg-card w-100 btn btn-primary">Cambiar theme</button>
+  </div>
 </nav>

@@ -1,10 +1,10 @@
 <?php
 require_once "conexion.php";
 
-function actualizarEgreso($monto, $descripcion, $fecha, $tipoID, $EgresoID)
+function actualizarEgreso($monto, $descripcion, $fecha, $tipoID, $confirmacion, $EgresoID)
 {
-    $sentencia = Conexion::conectar()->prepare("UPDATE egreso SET Monto = ?, Descripcion = ?, Fecha = ?, TipoID = ? WHERE EgresoID = ?");
-    return $sentencia->execute([ $monto, $descripcion, $fecha, $tipoID, $EgresoID]);
+    $sentencia = Conexion::conectar()->prepare("UPDATE egreso SET Monto = ?, Descripcion = ?, Fecha = ?, TipoID = ?, Confirmacion = ? WHERE EgresoID = ?");
+    return $sentencia->execute([ $monto, $descripcion, $fecha, $tipoID, $confirmacion, $EgresoID]);
 }
 
 function obtenerEgresoPorId($EgresoID)
@@ -33,7 +33,14 @@ function obtenerEgresosTipo($tipoID)
   return $sentencia->fetchAll();
 
 }
-
+function obtenerEgresosTotales()
+{
+    $sentencia = Conexion::conectar()->query("SELECT IFNULL(SUM(Monto), 0) as MontoTotal
+        FROM egreso
+        WHERE (Confirmacion IS NULL OR Confirmacion <> 0);
+    ");
+   return $sentencia->fetchAll();
+}
 function obtenerEgresosMesActual()
 {
     $sentencia = Conexion::conectar()->query("SELECT IFNULL(SUM(Monto), 0) as MontoTotal
@@ -73,13 +80,22 @@ function eliminarEgreso($id)
     return $sentencia->execute([$id]);
 }
 
-function insertarEgreso($monto, $descripcion, $fecha, $tipoID)
+function insertarEgreso($monto, $descripcion, $fecha, $tipoID, $confirmacion)
 {
-    $sentencia = Conexion::conectar()->prepare("INSERT INTO egreso(monto, descripcion, fecha, tipoID) VALUES( ?, ?, ?, ?)");
-    return $sentencia->execute([ $monto, $descripcion, $fecha, $tipoID]);
+    $sentencia = Conexion::conectar()->prepare("INSERT INTO egreso(monto, descripcion, fecha, tipoID, Confirmacion) VALUES( ?, ?, ?, ?, ?)");
+    return $sentencia->execute([ $monto, $descripcion, $fecha, $tipoID, $confirmacion]);
 }
 
 function tipoEgreso(){
   $sentencia = Conexion::conectar()->query("SELECT  TipoID, Nombre FROM tipoegreso");
   return $sentencia->fetchAll();
+}
+
+function ultimasAccionesEgresos() {
+    $db = Conexion::conectar();
+    $sentencia = $db->query("SELECT 'Egreso' AS tipo, EgresoID AS id, Monto, Descripcion FROM egreso
+      ORDER BY id DESC
+      LIMIT 5;
+    ");
+    return $sentencia->fetchAll();
 }

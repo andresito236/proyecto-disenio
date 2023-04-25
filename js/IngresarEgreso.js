@@ -32,8 +32,14 @@ function guardarEgreso() {
     }
 
     const cargaUtil = { monto, descripcion, fecha, tipoEgreso };
+    const fechaUsuario = new Date(fecha).toLocaleDateString();
+    const fechaActual = new Date().toLocaleDateString();
+    cargaUtil.confirmacion = fechaUsuario <= fechaActual ? 1 : 0;
+
     const EgresoId = $btnGuardar.dataset.egresoId;
     const accion = $btnGuardar.dataset.accion;
+
+    console.log(cargaUtil);
 
     try {
       const respuestaRaw = await fetch(

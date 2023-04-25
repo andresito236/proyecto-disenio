@@ -11,7 +11,8 @@ $monto = $cargaUtil->monto;
 $descripcion = $cargaUtil->descripcion;
 $fecha = $cargaUtil->fecha;
 $tipoEgreso = $cargaUtil->tipoEgreso;
+$confirmacion = $cargaUtil->confirmacion;
 include_once "../modelos/funciones.php";
-$respuesta = actualizarEgreso( $monto, $descripcion, $fecha, $tipoEgreso, $id);
+$respuesta = actualizarEgreso( $monto, $descripcion, $fecha, $tipoEgreso, $confirmacion, $id);
 // Devolver al cliente la respuesta de la función
 echo json_encode($respuesta);

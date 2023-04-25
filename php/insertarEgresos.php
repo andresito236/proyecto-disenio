@@ -10,7 +10,8 @@ $monto = $cargaUtil->monto;
 $descripcion = $cargaUtil->descripcion;
 $fecha = $cargaUtil->fecha;
 $tipoEgreso = $cargaUtil->tipoEgreso;
+$confirmacion = $cargaUtil->confirmacion;
 include_once "../modelos/funciones.php";
-$respuesta = insertarEgreso($monto, $descripcion, $fecha, $tipoEgreso);
+$respuesta = insertarEgreso($monto, $descripcion, $fecha, $tipoEgreso, $confirmacion);
 // Devolver al cliente la respuesta de la función
 echo json_encode($respuesta);

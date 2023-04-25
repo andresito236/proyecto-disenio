@@ -7,6 +7,12 @@ function actualizarEgreso($monto, $descripcion, $fecha, $tipoID, $confirmacion, 
     return $sentencia->execute([ $monto, $descripcion, $fecha, $tipoID, $confirmacion, $EgresoID]);
 }
 
+function actualizarConfirmacion($confirmacion, $EgresoID)
+{
+    $sentencia = Conexion::conectar()->prepare("UPDATE egreso SET Confirmacion = ? WHERE EgresoID = ?");
+    return $sentencia->execute([ $confirmacion, $EgresoID]);
+}
+
 function obtenerEgresoPorId($EgresoID)
 {
     $sentencia = Conexion::conectar()->prepare("SELECT EgresoID, Monto, Descripcion, Fecha, TipoID FROM egreso WHERE EgresoID = ?");
@@ -22,7 +28,7 @@ function obtenerEgresos()
 
 function obtenerEgresosFuturos()
 {
-    $sentencia = Conexion::conectar()->query("SELECT EgresoID, Monto, Descripcion, Fecha FROM egreso where Fecha > NOW()");
+    $sentencia = Conexion::conectar()->query("SELECT EgresoID, Monto, Descripcion, Fecha FROM egreso where Fecha <= CURDATE() AND Confirmacion = 0");
     return $sentencia->fetchAll();
 }
 

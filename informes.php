@@ -55,7 +55,7 @@
       <div class="col-12">
         <div class="bg-card rounded p-4 h-tables-cards-2">
           <div class="table-container-cal overflow-y-auto">
-            <table class="table table-responsive border-secondary border-top text-white bg-card">
+            <table class="table table-responsive border-secondary border-top text-change bg-card">
               <thead>
                 <tr>
                   <th scope="col">#</th>

@@ -19,17 +19,58 @@ const crearFilaTabla = (ingreso, cont) => {
 
   const idIngreso = ingreso.IngresoID;
 
-  const botonEditar = document.createElement("button");
-  botonEditar.classList.add("btn", "btn-primary");
-  botonEditar.innerHTML = `<i class="fa fa-edit"></i>`;
+  const botonConfirmar = document.createElement("button");
+  botonConfirmar.classList.add("btn", "btn-primary");
+  botonConfirmar.innerHTML = `<i class="fa fa-check"></i>`;
 
-  botonEditar.onclick = async () => {
-    // $btnGuardar.setAttribute("editar");
-    rellenarFormulario(idIngreso);
+  botonConfirmar.onclick = async () => {
+    const respuestaConfirmacion = await Swal.fire({
+      title: "Confirmación",
+      text: "¿Confirmar registro?",
+      icon: "warning",
+      showCancelButton: true,
+      cancelButtonColor: "#3085d6",
+      confirmButtonColor: "#d33",
+      confirmButtonText: "Sí, confirmar",
+      cancelButtonText: "Cancelar",
+    });
+    if (respuestaConfirmacion.value) {
+      const confirmacion = 1;
+      const id = parseInt(idIngreso);
+
+      const cargaUtil = { confirmacion, id };
+
+      try {
+        const respuestaRaw = await fetch("./php/confirmarIngreso.php", {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(cargaUtil),
+        });
+        const respuesta = await respuestaRaw.json();
+        if (respuesta) {
+          Swal.fire({
+            icon: "success",
+            text: "Ingreso confirmado",
+            timer: 1100,
+          });
+          obtenerIngresosFuturos();
+        } else {
+          Swal.fire({
+            icon: "error",
+            text: "El servidor no respondió con una respuesta exitosa",
+          });
+        }
+      } catch (e) {
+        Swal.fire({
+          icon: "error",
+          text: `Error de servidor ${e}`,
+        });
+      }
+    }
   };
 
   const celdaBotonEditar = document.createElement("td");
-  celdaBotonEditar.appendChild(botonEditar);
+  celdaBotonEditar.appendChild(botonConfirmar);
 
   fila.appendChild(celdaBotonEditar);
 
@@ -60,7 +101,7 @@ const crearFilaTabla = (ingreso, cont) => {
           text: "Ingreso eliminado",
           timer: 1100,
         });
-        obtenerIngresos(); // Actualizamos la tabla después de eliminar
+        obtenerIngresosFuturos(); // Actualizamos la tabla después de eliminar
       } else {
         Swal.fire({
           icon: "error",

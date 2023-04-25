@@ -18,9 +18,9 @@
     <div class="row">
       <?php 
                 $form_type = "egresos (reportes)";
-                $totalMes = "Egreso Mensual";
-                $totalSemanal = "Egreso Semanal";
-                $totalDiario = "Egreso Diario";
+                $totalMes = "Egreso del mes";
+                $totalSemanal = "Egreso de la semana";
+                $totalDiario = "Egreso del día";
                 $visible = true;
                 include './sidebar.php';
                 include './informes.php';

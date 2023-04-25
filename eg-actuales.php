@@ -20,6 +20,7 @@
       <?php 
               $form_type = "egresos";
               $formType = "egreso";
+              $visible = true;
               include './sidebar.php';
               include './form-actuales.php';
             ?>

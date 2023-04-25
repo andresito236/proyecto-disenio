@@ -21,7 +21,6 @@
       <?php 
                 $form_type = "egresos futuros";
                 $formType = "egreso futuro";
-                $visible = true;
                 include './sidebar.php';
                 include './form-actuales.php';
             ?>
@@ -32,6 +31,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous">
   </script>
+  <script src="js/sweetalert2.min.js" type="text/javascript"></script>
   <script src="./js/obtenerEgresosFuturos.js"></script>
 </body>
 <script src="./js/sidebar.js"></script>

@@ -6,8 +6,13 @@ function actualizarIngreso($monto, $descripcion, $fecha, $tipoID, $IngresoID)
     $sentencia = Conexion::conectar()->prepare("UPDATE ingreso SET Monto = ?, Descripcion = ?, Fecha = ?, TipoID = ? WHERE IngresoID = ?");
     return $sentencia->execute([ $monto, $descripcion, $fecha, $tipoID, $IngresoID]);
 }
+function actualizarConfirmacion($confirmacion, $IngresoID)
+{
+    $sentencia = Conexion::conectar()->prepare("UPDATE ingreso SET Confirmacion = ? WHERE IngresoID = ?");
+    return $sentencia->execute([ $confirmacion, $IngresoID]);
+}
 
-function obtenerIngresoPorId($IngresoID)
+function obtenerIngresoPorId($IngresoID,)
 {
     $sentencia = Conexion::conectar()->prepare("SELECT IngresoID, Monto, Descripcion, Fecha, TipoID FROM ingreso WHERE IngresoID = ?");
     $sentencia->execute([$IngresoID]);
@@ -21,7 +26,7 @@ function obtenerIngresos()
 }
 function obtenerIngresosFuturos()
 {
-  $sentencia = Conexion::conectar()->query("SELECT IngresoID, Monto, Descripcion, Fecha FROM ingreso where Fecha > NOW()");
+  $sentencia = Conexion::conectar()->query("SELECT IngresoID, Monto, Descripcion, Fecha FROM ingreso where Fecha <= CURDATE() AND Confirmacion = 0");
   return $sentencia->fetchAll();
 }
 function obtenerIngresosTipo($tipoID)

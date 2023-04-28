@@ -1,3 +1,0 @@
-En las cards de egresos y de ingresos, agregar los ingresos o egresos, mensual, semanal y diario
-
-

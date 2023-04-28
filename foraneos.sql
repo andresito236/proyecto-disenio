@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 26-04-2023 a las 01:48:37
+-- Tiempo de generación: 28-04-2023 a las 22:21:42
 -- Versión del servidor: 10.4.27-MariaDB
 -- Versión de PHP: 8.0.25
 
@@ -138,7 +138,7 @@ DELIMITER ;
 
 CREATE TABLE `tipoegreso` (
   `TipoID` int(11) NOT NULL,
-  `Nombre` enum('Comida','Impuestos','Ocio','Mantenimiento de hogar','Otras personas') DEFAULT NULL
+  `Nombre` enum('Comida','Impuestos','Entretenimiento','Mantenimiento de hogar','Transporte','Educación','Salud','Vestimenta','Servicios financieros','Impuestos y contribuciones','Otros gastos') DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
@@ -147,8 +147,15 @@ CREATE TABLE `tipoegreso` (
 
 INSERT INTO `tipoegreso` (`TipoID`, `Nombre`) VALUES
 (1, 'Comida'),
-(2, 'Ocio'),
-(3, 'Mantenimiento de hogar');
+(2, 'Entretenimiento'),
+(3, 'Mantenimiento de hogar'),
+(4, 'Transporte'),
+(5, 'Educación'),
+(6, 'Salud'),
+(7, 'Vestimenta'),
+(8, 'Servicios financieros'),
+(9, 'Impuestos y contribuciones'),
+(10, 'Otros gastos');
 
 -- --------------------------------------------------------
 
@@ -158,7 +165,7 @@ INSERT INTO `tipoegreso` (`TipoID`, `Nombre`) VALUES
 
 CREATE TABLE `tipoingreso` (
   `TipoID` int(11) NOT NULL,
-  `Nombre` enum('Salario','Intereses','Regalos') DEFAULT NULL
+  `Nombre` enum('Salario','Intereses','Regalos','Honorarios','Alquileres','Ventas','Dividendos','Inversiones','Trabajos freelance','Otros Ingresos') DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
@@ -167,7 +174,15 @@ CREATE TABLE `tipoingreso` (
 
 INSERT INTO `tipoingreso` (`TipoID`, `Nombre`) VALUES
 (1, 'Salario'),
-(2, 'Regalos');
+(2, 'Regalos'),
+(3, 'Intereses'),
+(4, 'Honorarios'),
+(5, 'Alquileres'),
+(6, 'Ventas'),
+(7, 'Dividendos'),
+(8, 'Inversiones'),
+(9, 'Trabajos freelance'),
+(10, 'Otros Ingresos');
 
 --
 -- Índices para tablas volcadas

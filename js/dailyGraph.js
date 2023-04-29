@@ -1,65 +1,90 @@
-{/* <span class="fs-5 d-flex align-items-center">
+{
+  /* <span class="fs-5 d-flex align-items-center">
   <span class="d-flex align-items-center pt-2">
     <i class="text-danger fi fi-rr-arrow-small-down me-2"></i>
   </span>
   <span class="fs-6">
     Lunes: L. 20
   </span>
-</span> */}
+</span> */
+}
 
 // items
 
-const ingresosItem = document.getElementById("datosIngresosGrafico")
-const egresosItem = document.getElementById("datosEgresosGraficos")
+const ingresosItem = document.getElementById("datosIngresosGrafico");
+const egresosItem = document.getElementById("datosEgresosGraficos");
 
-const listItemIngresos = (datosIngresos) =>{
+const listItemIngresos = (datosIngresos) => {
   const val = Object.entries(datosIngresos).sort((a, b) => b[1] - a[1]);
   const nam = val.slice(0, 4);
-  return Object.fromEntries(nam)
-}
+  return Object.fromEntries(nam);
+};
 
 // Grafico de ingresos
 const grafico = document.getElementById("dailyGraph").getContext("2d");
-let datos = {}
-const fecha_actual = new Date()
-const inicio_semana_actual = new Date(fecha_actual.setDate(fecha_actual.getDate() - fecha_actual.getDay()));
-const fin_semana_actual = new Date(fecha_actual.setDate(fecha_actual.getDate() - fecha_actual.getDay() + 6));
+let datos = {};
+const fecha_actual = new Date();
+const inicio_semana_actual = new Date(
+  fecha_actual.setDate(fecha_actual.getDate() - fecha_actual.getDay())
+);
+const fin_semana_actual = new Date(
+  fecha_actual.setDate(fecha_actual.getDate() - fecha_actual.getDay() + 6)
+);
 inicio_semana_actual.setHours(0, 0, 0, 0);
 fin_semana_actual.setHours(0, 0, 0, 0);
-const diasSemana = ["lunes", "martes", "miércoles", "jueves", "viernes", "sábado","domingo"]
+const diasSemana = [
+  "lunes",
+  "martes",
+  "miércoles",
+  "jueves",
+  "viernes",
+  "sábado",
+  "domingo",
+];
 
 const ingresos = async () => {
-  const res = await fetch('http://localhost/proyecto-disenio/php/obtenerIngresos.php')
-  const response = await res.json()
-  const valores = response.map(({Monto, Fecha, Confirmacion, Descripcion}) => ({ Monto, Fecha, Confirmacion, Descripcion}))
-  
-  const valoresfilter = valores.filter((item)=>{
-    const fechaItem = new Date(item.Fecha)
-    fechaItem.setMinutes(fechaItem.getMinutes() + fechaItem.getTimezoneOffset())
-    return fechaItem >= inicio_semana_actual && fechaItem <= fin_semana_actual && (item.Confirmacion === null || item.Confirmacion == 1)
-  })
+  const res = await fetch("./php/obtenerIngresos.php");
+  const response = await res.json();
+  const valores = response.map(
+    ({ Monto, Fecha, Confirmacion, Descripcion }) => ({
+      Monto,
+      Fecha,
+      Confirmacion,
+      Descripcion,
+    })
+  );
+
+  const valoresfilter = valores.filter((item) => {
+    const fechaItem = new Date(item.Fecha);
+    fechaItem.setMinutes(
+      fechaItem.getMinutes() + fechaItem.getTimezoneOffset()
+    );
+    return (
+      fechaItem >= inicio_semana_actual &&
+      fechaItem <= fin_semana_actual &&
+      (item.Confirmacion === null || item.Confirmacion == 1)
+    );
+  });
 
   const montosPorDia = diasSemana.reduce((acumulador, nombreDia) => {
-    const montosDia = valoresfilter.filter(item => {
-      const fecha = new Date(item.Fecha)
-      const diaSemana = fecha.getDay()
-      return diasSemana[diaSemana] === nombreDia
-    })
+    const montosDia = valoresfilter.filter((item) => {
+      const fecha = new Date(item.Fecha);
+      const diaSemana = fecha.getDay();
+      return diasSemana[diaSemana] === nombreDia;
+    });
 
     const totalDia = montosDia.reduce((acumulador, item) => {
-      return acumulador + parseFloat(item.Monto)
-    }, 0)
-    
-    acumulador[nombreDia] = totalDia
-    return acumulador
-  }, {})
-  datos = montosPorDia 
-}
+      return acumulador + parseFloat(item.Monto);
+    }, 0);
 
+    acumulador[nombreDia] = totalDia;
+    return acumulador;
+  }, {});
+  datos = montosPorDia;
+};
 
-ingresos().then(montosPorDia => {
-
-  const listing = listItemIngresos(datos)
+ingresos().then((montosPorDia) => {
+  const listing = listItemIngresos(datos);
 
   Object.entries(listing).forEach(([day, value]) => {
     ingresosItem.innerHTML += `
@@ -71,9 +96,9 @@ ingresos().then(montosPorDia => {
         ${day}: L. ${value}
       </span>
     </span>
-    `
+    `;
   });
-  
+
   const miChart = new Chart(grafico, {
     type: "doughnut",
     data: {
@@ -84,11 +109,19 @@ ingresos().then(montosPorDia => {
         "Miércoles",
         "Jueves",
         "Viernes",
-        "Sábado"
+        "Sábado",
       ],
       datasets: [
         {
-          data: [datos.domingo, datos.lunes, datos.martes, datos.miércoles, datos.jueves, datos.viernes, datos.sábado],
+          data: [
+            datos.domingo,
+            datos.lunes,
+            datos.martes,
+            datos.miércoles,
+            datos.jueves,
+            datos.viernes,
+            datos.sábado,
+          ],
           backgroundColor: [
             "rgba(255, 99, 132, 1)",
             "rgba(75, 192, 192, 1)",
@@ -148,43 +181,54 @@ ingresos().then(montosPorDia => {
       },
     },
   });
-}) 
-
+});
 
 const grafico2 = document.getElementById("dailyGraphEgresos").getContext("2d");
 
-
 const egresos = async () => {
-  const res = await fetch('http://localhost/proyecto-disenio/php/obtenerEgresosActuales.php')
-  const response = await res.json()
-  const valores = response.map(({Monto, Fecha, Confirmacion, Descripcion}) => ({ Monto, Fecha, Confirmacion, Descripcion}))
-  
-  const valoresfilter = valores.filter((item)=>{
-    const fechaItem = new Date(item.Fecha)
-    fechaItem.setMinutes(fechaItem.getMinutes() + fechaItem.getTimezoneOffset())
-    return fechaItem >= inicio_semana_actual && fechaItem <= fin_semana_actual && (item.Confirmacion == 1 || item.Confirmacion == null)
-  })
+  const res = await fetch("./php/obtenerEgresosActuales.php");
+  const response = await res.json();
+  const valores = response.map(
+    ({ Monto, Fecha, Confirmacion, Descripcion }) => ({
+      Monto,
+      Fecha,
+      Confirmacion,
+      Descripcion,
+    })
+  );
+
+  const valoresfilter = valores.filter((item) => {
+    const fechaItem = new Date(item.Fecha);
+    fechaItem.setMinutes(
+      fechaItem.getMinutes() + fechaItem.getTimezoneOffset()
+    );
+    return (
+      fechaItem >= inicio_semana_actual &&
+      fechaItem <= fin_semana_actual &&
+      (item.Confirmacion == 1 || item.Confirmacion == null)
+    );
+  });
 
   const montosPorDia = diasSemana.reduce((acumulador, nombreDia) => {
-    const montosDia = valoresfilter.filter(item => {
-      const fecha = new Date(item.Fecha)
-      const diaSemana = fecha.getDay()
-      
-      return diasSemana[diaSemana] === nombreDia
-    })
+    const montosDia = valoresfilter.filter((item) => {
+      const fecha = new Date(item.Fecha);
+      const diaSemana = fecha.getDay();
+
+      return diasSemana[diaSemana] === nombreDia;
+    });
 
     const totalDia = montosDia.reduce((acumulador, item) => {
-      return acumulador + parseFloat(item.Monto)
-    }, 0)
-  
-    acumulador[nombreDia] = totalDia
-    return acumulador
-  }, {})
-  datos = montosPorDia 
-}
+      return acumulador + parseFloat(item.Monto);
+    }, 0);
 
-egresos().then(montosPorDia => {
-  const listing = listItemIngresos(datos)
+    acumulador[nombreDia] = totalDia;
+    return acumulador;
+  }, {});
+  datos = montosPorDia;
+};
+
+egresos().then((montosPorDia) => {
+  const listing = listItemIngresos(datos);
 
   Object.entries(listing).forEach(([day, value]) => {
     egresosItem.innerHTML += `
@@ -196,7 +240,7 @@ egresos().then(montosPorDia => {
         ${day}: L. ${value}
       </span>
     </span>
-    `
+    `;
   });
   const miChart2 = new Chart(grafico2, {
     type: "doughnut",
@@ -208,11 +252,19 @@ egresos().then(montosPorDia => {
         "Miércoles",
         "Jueves",
         "Viernes",
-        "Sábado"
+        "Sábado",
       ],
       datasets: [
         {
-          data: [datos.domingo, datos.lunes, datos.martes, datos.miércoles, datos.jueves, datos.viernes, datos.sábado],
+          data: [
+            datos.domingo,
+            datos.lunes,
+            datos.martes,
+            datos.miércoles,
+            datos.jueves,
+            datos.viernes,
+            datos.sábado,
+          ],
           backgroundColor: [
             "rgba(255, 99, 132, 1)",
             "rgba(75, 192, 192, 1)",
@@ -272,4 +324,4 @@ egresos().then(montosPorDia => {
       },
     },
   });
-}) 
+});

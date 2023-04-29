@@ -18,6 +18,12 @@ const crearFilaTabla = (ingreso, cont) => {
   celdaFecha.innerText = ingreso.Fecha;
   fila.appendChild(celdaFecha);
 
+  const celdaConfirmacion = document.createElement("td");
+
+  celdaConfirmacion.innerText =
+    ingreso.Confirmacion === "0" ? "Por concretar" : "Concretado";
+  fila.appendChild(celdaConfirmacion);
+
   return fila;
 };
 

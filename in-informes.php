@@ -17,10 +17,11 @@
   <main class="container-fluid">
     <div class="row">
       <?php 
+                $type = "ingreso";
                 $form_type = "ingresos (reportes)";
-                $totalMes = "Ingreso del mes";
-                $totalSemanal = "Ingreso de la semana";
-                $totalDiario = "Ingresos del día";
+                $totalMes = "Ingresos concretados del mes";
+                $totalSemanal = "Ingresos concretados de la semana";
+                $totalDiario = "Ingresos concretados del día";
                 $visible = true;
                 include './sidebar.php';
                 include './informes.php';

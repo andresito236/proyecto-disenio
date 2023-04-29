@@ -12,7 +12,7 @@ function actualizarConfirmacion($confirmacion, $IngresoID)
     return $sentencia->execute([ $confirmacion, $IngresoID]);
 }
 
-function obtenerIngresoPorId($IngresoID,)
+function obtenerIngresoPorId($IngresoID)
 {
     $sentencia = Conexion::conectar()->prepare("SELECT IngresoID, Monto, Descripcion, Fecha, TipoID FROM ingreso WHERE IngresoID = ?");
     $sentencia->execute([$IngresoID]);
@@ -21,7 +21,7 @@ function obtenerIngresoPorId($IngresoID,)
 
 function obtenerIngresos()
 {
-  $sentencia = Conexion::conectar()->query("SELECT IngresoID, Monto, Descripcion, Fecha FROM ingreso");
+  $sentencia = Conexion::conectar()->query("SELECT IngresoID, Monto, Descripcion, Fecha, Confirmacion FROM ingreso");
   return $sentencia->fetchAll();
 }
 function obtenerIngresosFuturos()
@@ -31,7 +31,7 @@ function obtenerIngresosFuturos()
 }
 function obtenerIngresosTipo($tipoID)
 {
-  $sentencia = Conexion::conectar()->prepare("SELECT IngresoID, Monto, Descripcion, Fecha FROM ingreso where TipoID = ?");
+  $sentencia = Conexion::conectar()->prepare("SELECT IngresoID, Monto, Descripcion, Fecha, Confirmacion FROM ingreso where TipoID = ?");
   $sentencia->execute([$tipoID]);
       return $sentencia->fetchAll();
 

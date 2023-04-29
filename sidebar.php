@@ -74,6 +74,6 @@
     </li>
   </ul>
   <div class="dropdown">
-    <button id="theme" class="bg-card w-100 btn btn-primary">Cambiar theme</button>
+    <button id="theme" class="bg-card w-100 btn btn-primary">Cambiar tema</button>
   </div>
 </nav>

@@ -70,6 +70,7 @@ const crearFilaTabla = (egreso, cont) => {
     }
   };
   const celdaBotonEditar = document.createElement("td");
+  celdaBotonEditar.classList.add("text-center");
   celdaBotonEditar.appendChild(botonConfirmar);
 
   fila.appendChild(celdaBotonEditar);
@@ -112,6 +113,7 @@ const crearFilaTabla = (egreso, cont) => {
   };
 
   const celdaBoton = document.createElement("td");
+  celdaBoton.classList.add("text-center");
   celdaBoton.appendChild(botonEliminar);
   fila.appendChild(celdaBoton);
 

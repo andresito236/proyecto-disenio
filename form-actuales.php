@@ -59,7 +59,13 @@
     <?php else: ?>
     <div class="my-4 col-12 col-sm-12 col-md-12 col-lg-12">
       <div class="bg-card rounded p-4 h-tables-cards">
-        <div class="table-container-cal overflow-y-auto">
+        <div div class="table-container-cal overflow-y-auto">
+          <div class="-4 bg-secondary rounded mb-3">
+          <div class="alert alert-secondary alert-dismissible fade show" role="alert">
+            <strong>Nota:</strong> Los registros aparecen en esta sección hasta que haya transcurrido la fecha en la que fueron programados.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+          </div>
           <table class="table table-responsive text-change  bg-card">
             <thead>
               <tr>
@@ -67,8 +73,8 @@
                 <th scope="col">Descripcion</th>
                 <th scope="col">Monto</th>
                 <th scope="col">Fecha</th>
-                <th scope="col">Confirmar</th>
-                <th scope="col">Rechazar</th>
+                <th scope="col" class="text-center">Confirmar</th>
+                <th scope="col" class="text-center">Rechazar</th>
               </tr>
             </thead>
             <tbody id="CuerpoTabla">

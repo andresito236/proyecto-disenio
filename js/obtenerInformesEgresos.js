@@ -37,7 +37,6 @@ export default async function obtenerEgresos() {
     );
     const egresos = await respuestaRaw.json();
 
-    console.log(egresos);
     cuerpoTabla.innerHTML = "";
     for (const egreso of egresos) {
       const fila = crearFilaTabla(egreso, cont);

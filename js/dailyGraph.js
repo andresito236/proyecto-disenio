@@ -1,3 +1,23 @@
+{/* <span class="fs-5 d-flex align-items-center">
+  <span class="d-flex align-items-center pt-2">
+    <i class="text-danger fi fi-rr-arrow-small-down me-2"></i>
+  </span>
+  <span class="fs-6">
+    Lunes: L. 20
+  </span>
+</span> */}
+
+// items
+
+const ingresosItem = document.getElementById("datosIngresosGrafico")
+const egresosItem = document.getElementById("datosEgresosGraficos")
+
+const listItemIngresos = (datosIngresos) =>{
+  const val = Object.entries(datosIngresos).sort((a, b) => b[1] - a[1]);
+  const nam = val.slice(0, 4);
+  return Object.fromEntries(nam)
+}
+
 // Grafico de ingresos
 const grafico = document.getElementById("dailyGraph").getContext("2d");
 let datos = {}
@@ -16,7 +36,6 @@ const ingresos = async () => {
   const valoresfilter = valores.filter((item)=>{
     const fechaItem = new Date(item.Fecha)
     fechaItem.setMinutes(fechaItem.getMinutes() + fechaItem.getTimezoneOffset())
-    console.log(item.Confirmacion === 0)
     return fechaItem >= inicio_semana_actual && fechaItem <= fin_semana_actual && (item.Confirmacion === null || item.Confirmacion == 1)
   })
 
@@ -30,7 +49,7 @@ const ingresos = async () => {
     const totalDia = montosDia.reduce((acumulador, item) => {
       return acumulador + parseFloat(item.Monto)
     }, 0)
-  
+    
     acumulador[nombreDia] = totalDia
     return acumulador
   }, {})
@@ -39,6 +58,22 @@ const ingresos = async () => {
 
 
 ingresos().then(montosPorDia => {
+
+  const listing = listItemIngresos(datos)
+
+  Object.entries(listing).forEach(([day, value]) => {
+    ingresosItem.innerHTML += `
+    <span class="fs-5 d-flex align-items-center">
+      <span class="d-flex align-items-center pt-2">
+        <i class="text-success fi fi-rr-arrow-small-up me-2"></i>
+      </span>
+      <span class="fs-6">
+        ${day}: L. ${value}
+      </span>
+    </span>
+    `
+  });
+  
   const miChart = new Chart(grafico, {
     type: "doughnut",
     data: {
@@ -127,11 +162,8 @@ const egresos = async () => {
   const valoresfilter = valores.filter((item)=>{
     const fechaItem = new Date(item.Fecha)
     fechaItem.setMinutes(fechaItem.getMinutes() + fechaItem.getTimezoneOffset())
-    console.log(fechaItem >= inicio_semana_actual && fechaItem <= fin_semana_actual && (item.Confirmacion == 1 || item.Confirmacion == null))
-    return fechaItem >= inicio_semana_actual && fechaItem <= fin_semana_actual 
+    return fechaItem >= inicio_semana_actual && fechaItem <= fin_semana_actual && (item.Confirmacion == 1 || item.Confirmacion == null)
   })
-  
-  console.log(valoresfilter)
 
   const montosPorDia = diasSemana.reduce((acumulador, nombreDia) => {
     const montosDia = valoresfilter.filter(item => {
@@ -152,7 +184,20 @@ const egresos = async () => {
 }
 
 egresos().then(montosPorDia => {
-  console.log(datos)
+  const listing = listItemIngresos(datos)
+
+  Object.entries(listing).forEach(([day, value]) => {
+    egresosItem.innerHTML += `
+    <span class="fs-5 d-flex align-items-center">
+      <span class="d-flex align-items-center pt-2">
+        <i class="text-success fi fi-rr-arrow-small-up me-2"></i>
+      </span>
+      <span class="fs-6">
+        ${day}: L. ${value}
+      </span>
+    </span>
+    `
+  });
   const miChart2 = new Chart(grafico2, {
     type: "doughnut",
     data: {

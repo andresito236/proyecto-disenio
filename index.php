@@ -175,7 +175,6 @@
   <script src="./js/home.js" type="module"></script>
 </body>
 <script src="./js/dailyGraph.js"></script>
-<script src="./js/dailyGraphEgresos.js"></script>
 <script src="./js/sidebar.js"></script>
 
 </html>

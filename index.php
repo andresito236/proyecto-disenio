@@ -149,14 +149,13 @@
           </div>
         </article>
       </section>
-      <section class="main-dashboard-left p-5 col-4 col-sm-2 col-md-3 col-lg-3">
+      <section class="main-dashboard-left p-5 col-4 col-sm-2 col-md-3 col-lg-3 d-flex align-items-center">
         <div class="bg-card">
-          <div class="card-body bg-main-dashboard rounded ">
-            <div class="px-4 py-3 mt-2">
+          <div class="card-body bg-main-dashboard rounded">
+            <div class="px-4 py-3 mt-2 d-flex flex-column justify-content-between h-100">
               <h3 class="fs-5">Últimas Acciones de Ingresos</h3>
               <hr>
               <ol class="list-group list-group-numbered my-4 ultimasAccionesIngresos">
-
               </ol>
               <h3 class="fs-5">Últimas Acciones de Egresos</h3>
               <hr>

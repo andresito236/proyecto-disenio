@@ -21,7 +21,7 @@ export async function obtenerUltimasAcciones() {
       "list-group-item",
       "d-flex",
       "justify-content-between",
-      "align-items-start"
+      "align-items-center"
     );
     // <li class="list-group-item bg-card d-flex justify-content-between align-items-start">
     //   <div class="ms-2 me-auto">

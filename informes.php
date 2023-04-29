@@ -36,7 +36,7 @@
         <div class="col-12 d-flex">
           <div class="col-6 d-flex align-items-center px-1">
             <h5>
-              Titulo del informe
+              <?php echo isset($header) ? $header : "fuera de linea"; ?>
             </h5>
           </div>
           <div class="col-6 d-flex p-2 justify-content-end">

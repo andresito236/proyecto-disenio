@@ -21,7 +21,7 @@ const crearFilaTabla = (ingreso, cont) => {
   const celdaConfirmacion = document.createElement("td");
 
   celdaConfirmacion.innerText =
-    ingreso.Confirmacion === "0" ? "Por concretar" : "Concretado";
+    ingreso.Confirmacion == "0" ? "Por concretar" : "Concretado";
   fila.appendChild(celdaConfirmacion);
 
   return fila;

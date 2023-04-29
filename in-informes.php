@@ -18,6 +18,7 @@
     <div class="row">
       <?php 
                 $type = "ingreso";
+                $header = "Ingresos registrados";
                 $form_type = "ingresos (reportes)";
                 $totalMes = "Ingresos concretados del mes";
                 $totalSemanal = "Ingresos concretados de la semana";

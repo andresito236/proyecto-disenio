@@ -9,5 +9,5 @@ export async function obtenerBalance() {
 
   const balanceTotal =
     parseFloat(ingresos[0].MontoTotal) - parseFloat(egresos[0].MontoTotal);
-  balance.textContent = `L. ${balanceTotal}`;
+  balance.textContent = `L. ${balanceTotal.toFixed(2)}`;
 }

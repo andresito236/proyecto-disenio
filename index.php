@@ -49,44 +49,13 @@
         <article class="row d-flex">
           <div class="mb-3 my-3 col-12 col-md-6 pe-2">
             <div class="card bg-card">
-              <div class="card-header fs-5 fw-bold">Ultimas Acciones Egresos</div>
+              <div class="card-header fs-5 fw-bold">Ingresos de la semana</div>
               <div class="p-4 second-row d-flex">
                 <div class="col-7 me-1">
-                  <canvas id="dailyGraphEgresos"></canvas>
+                  <canvas id="dailyGraph"></canvas>
                 </div>
-                <div class="d-flex flex-column gap-2 col-6">
-                  <span class="fs-5 d-flex align-items-center">
-                    <span class="d-flex align-items-center pt-2">
-                      <i class="text-danger fi fi-rr-arrow-small-down me-2"></i>
-                    </span>
-                    <span class="fs-6">
-                      Lunes: L. 20
-                    </span>
-                  </span>
-                  <span class="fs-5 d-flex align-items-center">
-                    <span class="d-flex align-items-center pt-2">
-                      <i class="text-danger fi fi-rr-arrow-small-down me-2"></i>
-                    </span>
-                    <span class="fs-6">
-                      Martes: L. 20
-                    </span>
-                  </span>
-                  <span class="fs-5 d-flex align-items-center">
-                    <span class="d-flex align-items-center pt-2">
-                      <i class="text-success fi fi-rr-arrow-small-up me-2"></i>
-                    </span>
-                    <span class="fs-6">
-                      Miercoles: L. 20
-                    </span>
-                  </span>
-                  <span class="fs-5 d-flex align-items-center">
-                    <span class="d-flex align-items-center pt-2">
-                      <i class="text-success fi fi-rr-arrow-small-up me-2"></i>
-                    </span>
-                    <span class="fs-6">
-                      Jueves: L. 20
-                    </span>
-                  </span>
+                <div id="datosIngresosGrafico" class="d-flex flex-column gap-2 col-6">
+                  <!-- Aqui se generan la lista de los 4 ingresos mas grandes de la semana cuncurrente -->
                 </div>
               </div>
             </div>
@@ -96,41 +65,10 @@
               <div class="card-header fs-5 fw-bold">Egresos de la semana</div>
               <div class="p-4 second-row d-flex">
                 <div class="col-7 me-1">
-                  <canvas id="dailyGraph"></canvas>
+                  <canvas id="dailyGraphEgresos"></canvas>
                 </div>
-                <div class="d-flex flex-column gap-2 col-6">
-                  <span class="fs-5 d-flex align-items-center">
-                    <span class="d-flex align-items-center pt-2">
-                      <i class="text-danger fi fi-rr-arrow-small-down me-2"></i>
-                    </span>
-                    <span class="fs-6">
-                      Lunes: L. 20
-                    </span>
-                  </span>
-                  <span class="fs-5 d-flex align-items-center">
-                    <span class="d-flex align-items-center pt-2">
-                      <i class="text-danger fi fi-rr-arrow-small-down me-2"></i>
-                    </span>
-                    <span class="fs-6">
-                      Martes: L. 20
-                    </span>
-                  </span>
-                  <span class="fs-5 d-flex align-items-center">
-                    <span class="d-flex align-items-center pt-2">
-                      <i class="text-success fi fi-rr-arrow-small-up me-2"></i>
-                    </span>
-                    <span class="fs-6">
-                      Miercoles: L. 20
-                    </span>
-                  </span>
-                  <span class="fs-5 d-flex align-items-center">
-                    <span class="d-flex align-items-center pt-2">
-                      <i class="text-success fi fi-rr-arrow-small-up me-2"></i>
-                    </span>
-                    <span class="fs-6">
-                      Jueves: L. 20
-                    </span>
-                  </span>
+                <div id="datosEgresosGraficos" class="d-flex flex-column gap-2 col-6">
+                  <!-- Aqui van los egresos mas grandes de la semana concurrente -->
                 </div>
               </div>
             </div>
@@ -149,14 +87,13 @@
           </div>
         </article>
       </section>
-      <section class="main-dashboard-left p-5 col-4 col-sm-2 col-md-3 col-lg-3">
+      <section class="main-dashboard-left p-5 col-4 col-sm-2 col-md-3 col-lg-3 d-flex align-items-center">
         <div class="bg-card">
-          <div class="card-body bg-main-dashboard rounded ">
-            <div class="px-4 py-3 mt-2">
+          <div class="card-body bg-main-dashboard rounded">
+            <div class="px-4 py-3 mt-2 d-flex flex-column justify-content-between h-100">
               <h3 class="fs-5">Últimas Acciones de Ingresos</h3>
               <hr>
               <ol class="list-group list-group-numbered my-4 ultimasAccionesIngresos">
-
               </ol>
               <h3 class="fs-5">Últimas Acciones de Egresos</h3>
               <hr>
@@ -175,7 +112,6 @@
   <script src="./js/home.js" type="module"></script>
 </body>
 <script src="./js/dailyGraph.js"></script>
-<script src="./js/dailyGraphEgresos.js"></script>
 <script src="./js/sidebar.js"></script>
 
 </html>

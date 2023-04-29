@@ -68,6 +68,8 @@ function obtenerEgresosSemanaActual()
 
    return $sentencia->fetchAll();
 }
+
+
 function obtenerEgresosDiaActual()
 {
     $sentencia = Conexion::conectar()->query("SELECT IFNULL(SUM(Monto), 0) as MontoTotal

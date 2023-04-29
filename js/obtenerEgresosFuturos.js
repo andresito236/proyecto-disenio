@@ -71,6 +71,7 @@ const crearFilaTabla = (egreso, cont) => {
   };
   const celdaBotonEditar = document.createElement("td");
   celdaBotonEditar.appendChild(botonConfirmar);
+  celdaBotonEditar.classList.add("d-flex", "justify-content-center");
 
   fila.appendChild(celdaBotonEditar);
 

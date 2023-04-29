@@ -127,7 +127,7 @@ const egresos = async () => {
   const valoresfilter = valores.filter((item)=>{
     const fechaItem = new Date(item.Fecha)
     fechaItem.setMinutes(fechaItem.getMinutes() + fechaItem.getTimezoneOffset())
-    console.log(fechaItem >= inicio_semana_actual && fechaItem <= fin_semana_actual && (item.Confirmacion == 1))
+    console.log(fechaItem >= inicio_semana_actual && fechaItem <= fin_semana_actual && (item.Confirmacion == 1 || item.Confirmacion == null))
     return fechaItem >= inicio_semana_actual && fechaItem <= fin_semana_actual 
   })
   

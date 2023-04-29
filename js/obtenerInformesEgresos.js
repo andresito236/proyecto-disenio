@@ -18,6 +18,11 @@ const crearFilaTabla = (egreso, cont) => {
   celdaFecha.innerText = egreso.Fecha;
   fila.appendChild(celdaFecha);
 
+  const celdaConfirmacion = document.createElement("td");
+  celdaConfirmacion.innerText =
+    egreso.Confirmacion == "0" ? "Por concretarse" : "Concretado";
+  fila.appendChild(celdaConfirmacion);
+
   return fila;
 };
 
@@ -31,6 +36,8 @@ export default async function obtenerEgresos() {
       `./php/obtenerEgresosTipo.php?TipoID=${TipoID}`
     );
     const egresos = await respuestaRaw.json();
+
+    console.log(egresos);
     cuerpoTabla.innerHTML = "";
     for (const egreso of egresos) {
       const fila = crearFilaTabla(egreso, cont);

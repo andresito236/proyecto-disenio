@@ -36,13 +36,14 @@
         <div class="col-12 d-flex">
           <div class="col-6 d-flex align-items-center px-1">
             <h5>
-              Titulo del informe
+              <?php echo isset($header) ? $header : "fuera de linea"; ?>
             </h5>
           </div>
           <div class="col-6 d-flex p-2 justify-content-end">
             <div class="p-1">
               <select class="form-select" aria-label="Default select example">
-                <option selected>Selecione el tipo de ingresos</option>
+                <option selected>Selecione el tipo de <?php echo isset($type) ? $type : "fuera de linea"; ?>
+                </option>
               </select>
             </div>
             <div class="p-1">
@@ -62,6 +63,7 @@
                   <th scope="col">Descripcion</th>
                   <th scope="col">Monto</th>
                   <th scope="col">Fecha</th>
+                  <th scope="col">Estado</th>
                 </tr>
               </thead>
               <tbody id="CuerpoTabla">

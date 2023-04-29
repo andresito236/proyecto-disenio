@@ -22,7 +22,7 @@ function obtenerEgresoPorId($EgresoID)
 
 function obtenerEgresos()
 {
-    $sentencia = Conexion::conectar()->query("SELECT EgresoID, Monto, Descripcion, Fecha FROM egreso");
+    $sentencia = Conexion::conectar()->query("SELECT EgresoID, Monto, Descripcion, Fecha, Confirmacion FROM egreso");
     return $sentencia->fetchAll();
 }
 
@@ -34,7 +34,7 @@ function obtenerEgresosFuturos()
 
 function obtenerEgresosTipo($tipoID)
 {
-  $sentencia = Conexion::conectar()->prepare("SELECT EgresoID, Monto, Descripcion, Fecha FROM egreso where TipoID = ?");
+  $sentencia = Conexion::conectar()->prepare("SELECT EgresoID, Monto, Descripcion, Fecha, Confirmacion FROM egreso where TipoID = ?");
   $sentencia->execute([$tipoID]);
   return $sentencia->fetchAll();
 

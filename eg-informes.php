@@ -16,11 +16,13 @@
 <body>
   <main class="container-fluid">
     <div class="row">
-      <?php 
+      <?php
+                $type = "egreso";
+                $header = "Egresos registrados";
                 $form_type = "egresos (reportes)";
-                $totalMes = "Egreso del mes";
-                $totalSemanal = "Egreso de la semana";
-                $totalDiario = "Egreso del día";
+                $totalMes = "Egresos concretados del mes";
+                $totalSemanal = "Egresos concretados de la semana";
+                $totalDiario = "Egreso concretados del día";
                 $visible = true;
                 include './sidebar.php';
                 include './informes.php';

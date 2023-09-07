@@ -14,7 +14,7 @@ export async function obtenerUltimasAcciones() {
 
   const fragmentIngresos = document.createDocumentFragment();
 
-  ultimasAccionesIngresos.forEach((el) => {
+  ultimasAccionesIngresos.forEach(el => {
     const li = document.createElement("li");
     li.classList.add(
       "bg-card",
@@ -48,7 +48,7 @@ export async function obtenerUltimasAcciones() {
 
   const fragmentEgresos = document.createDocumentFragment();
 
-  ultimasAccionesEgresos.forEach((el) => {
+  ultimasAccionesEgresos.forEach(el => {
     const li = document.createElement("li");
     li.classList.add(
       "bg-card",
@@ -56,7 +56,8 @@ export async function obtenerUltimasAcciones() {
       "d-flex",
       "bg-card",
       "justify-content-between",
-      "align-items-center"
+      "align-items-center",
+      "gap-3"
     );
     li.innerHTML = `<div class="ms-2 me-auto">
                       <div class="fw-bold">${el.tipo}</div>
